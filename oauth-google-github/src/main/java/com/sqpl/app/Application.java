@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example;
+package com.sqpl.app;
 
 import java.util.Collections;
 import java.util.Map;
@@ -32,7 +32,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
 @RestController
-public class SocialApplication extends WebSecurityConfigurerAdapter {
+public class Application extends WebSecurityConfigurerAdapter {
 
 	@RequestMapping("/user")
 	public Map<String, Object> user(@AuthenticationPrincipal OAuth2User principal) {
@@ -59,7 +59,7 @@ public class SocialApplication extends WebSecurityConfigurerAdapter {
 	}
 
 	public static void main(String[] args) {
-		SpringApplication.run(SocialApplication.class, args);
+		SpringApplication.run(Application.class, args);
 	}
 
 }

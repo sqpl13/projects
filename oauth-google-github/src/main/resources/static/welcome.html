@@ -14,21 +14,7 @@
     src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <h1>Login</h1>
-    <div class="container unauthenticated">
-        <div>
-            With GitHub: <a href="/oauth2/authorization/github">click here</a>
-        </div>
-        <div>
-            With Google: <a href="/oauth2/authorization/google">click here</a>
-        </div>
-    </div>
-    <div class="container authenticated" style="display: none">
-        Logged in as: <span id="user"></span>
-        <div>
-            <button onClick="logout()" class="btn btn-primary">Logout</button>
-        </div>
-    </div>
+    <h1>Hello, <span id="user"></span></h1>
     <script type="text/javascript" src="/webjars/js-cookie/js.cookie.js"></script>
     <script type="text/javascript">
           $.ajaxSetup({
@@ -46,17 +32,7 @@
           });
           $.get("/user", function(data) {
               $("#user").html(data.name);
-              $(".unauthenticated").hide();
-              $(".authenticated").show();
           });
-          var logout = function() {
-            $.post("/logout", function() {
-              $("#user").html('');
-              $(".unauthenticated").show();
-              $(".authenticated").hide();
-            })
-            return true;
-          }
-        </script>
+    </script>
 </body>
 </html>
