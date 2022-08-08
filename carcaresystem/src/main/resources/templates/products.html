@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Car Care - Products</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <link th:href="@{/css/styles.css}" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container">
+            <div th:replace="fragments/header" :: navbar ></div>
+            <div th:replace="fragments/subheader" :: booking ></div>
+            <div class="banner5 col-12"></div>
+            <h2 class="body-h2">OUR PRODUCTS</h2>
+            <div class="col-12">
+                <div class="products-container-wrap" >
+                    <div class="products-container-box" >
+                        <div th:each="product, pStat : ${products}" class ="product-item">
+                            <img th:src="@{'data:image/jpeg;base64,'+${product.productImage}}"/>
+                            <p class="product-name" th:text="${product.productName}"></p>
+                            <p th:text="'PHP ' + ${product.productPrice} + '0'"></p>
+                            <div class="btn-product-container">
+                                <a th:href="@{/order/} + ${product.productID}" class="btn-product">BUY NOW</a>
+                            </div>
+                        </div>  
+                    </div>
+                </div>
+            </div>
+            <div th:replace="fragments/subfooter" :: subfooter ></div>
+            <div th:replace="fragments/footer" :: footer ></div>
+        </div>
+        <script type="text/javascript" th:src="@{/js/main.js}"></script>
+    </body>
+</html>

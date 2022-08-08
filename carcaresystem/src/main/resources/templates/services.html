@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Car Care - Services</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <link th:href="@{/css/styles.css}" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container">
+            <div th:replace="fragments/header" :: navbar ></div>
+            <div th:replace="fragments/subheader" :: booking ></div>
+            <div class="banner3 col-12"></div>
+            <h2 class="body-h2">OUR SERVICES</h2>
+            <div class="service-wrap">
+                <div class="service-item service-1">
+                    <div class="service-content">
+                        <h2>BRAKES</h3>
+                        <p>We offer the best brake services.</p>
+                    </div>
+                </div>
+                <div class="service-item service-2">
+                    <div class="service-content">
+                        <h2>MAINTENANCE</h3>
+                        <p>Free maintenance inspection, to keep your car in top shape.</p>
+                    </div>
+                </div>
+                <div class="service-item service-3">
+                    <div class="service-content">
+                        <h2>OIL CHANGE</h3>
+                        <p>Best and fastest oil change in the business.</p>
+                    </div>
+                </div>
+                <div class="service-item service-4">
+                    <div class="service-content">                        
+                        <h2>TIRES, BATTERIES & MORE</h3>
+                        <p>Complete care for your vehicles.</p>
+                    </div>
+                </div>
+            </div>
+            <h2 class="body-h3">Full List of our Services:</h2>
+            <table>
+                <tbody>
+                    <tr>
+                        <th>Service</th>
+                        <th></th>
+                    </tr>
+                    <tr th:each="s: ${services}">
+                        <td th:text="${s.serviceName}" />
+                        <td class="service-price" th:text="'PHP ' + ${s.servicePrice} + '0'" />
+                    </tr>
+                </tbody>
+            </table>
+            <div th:replace="fragments/subfooter" :: subfooter ></div>
+            <div th:replace="fragments/footer" :: footer ></div>
+        </div>
+        <script type="text/javascript" th:src="@{/js/main.js}"></script>
+    </body>
+</html>

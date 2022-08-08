@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Car Care - Home</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <link th:href="@{/css/styles.css}" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container">
+            <div th:replace="fragments/header" :: navbar ></div>
+            <div th:replace="fragments/subheader" :: booking ></div>
+            <div class="banner col-12"></div>
+            <div class="grid">
+                <img th:src="@{/images/service.jpg}" alt="" class="grid-image">
+                <div class="grid-text">
+                    <h2>Our Services</h2>
+                    <p>The CarCare Team will provide the utmost care to your car. We will ensure that your care package covers every aspect of automotive maintenance. We believe in caring for cars so that they can perform regardless of mileage.</p>
+                    <p></p>
+                    <div class="btn-secondary-container">
+                        <a th:href="@{/services}" class="btn-secondary">LEARN MORE</a>
+                    </div>
+                </div>
+            </div>
+            <h2 class="body-h2">PRODUCTS</h2>
+            <div class="col-12">
+                <div class="products-container-wrap" >
+                    <div class="products-container-box" >
+                        <div th:each="product, pStat : ${products}" th:if="${pStat.count} &lt; 5" class ="product-item">
+                            <a th:href="@{/products/} + ${product.productID}"><img th:src="@{'data:image/jpeg;base64,'+${product.productImage}}" /></a>
+                            <p class="product-name" th:text="${product.productName}"></p>
+                            <p th:text="'PHP ' + ${product.productPrice} + '0'"></p>
+                            <div class="btn-product-container">
+                                <a th:href="@{/order/} + ${product.productID}" class="btn-product">BUY NOW</a>
+                            </div>
+                        </div>  
+                    </div>
+                </div>
+            </div>
+            <div th:replace="fragments/subfooter" :: subfooter ></div>
+            <div th:replace="fragments/footer" :: footer ></div>
+        </div>
+        <script type="text/javascript" th:src="@{/js/main.js}"></script>
+    </body>
+</html>

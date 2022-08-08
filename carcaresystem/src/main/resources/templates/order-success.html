@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>CarCare - Success!</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <link th:href="@{/css/styles.css}" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container">
+            <div th:replace="fragments/header" :: navbar ></div>
+            <div th:replace="fragments/subheader" :: booking ></div>
+            <h2 class="body-h2">Thank you for choosing CarCare!</h2>
+            <div class="content-box col-12">
+                <div class="content-wrap">
+                    <h3>Booking Summary</h3>
+                    <table>
+                        <tr>
+                          <th>REF#</th>
+                          <th>Name</th>
+                          <th>Contact</th>
+                          <th>Address</th>
+                          <th>Product</th>
+                          <th>Payment</th>
+                          <th>Cost</th>
+                        </tr>
+                        <tr>
+                          <td th:text="${order.orderID}"></td>
+                          <td th:text="${order.orderName}"></td>
+                          <td th:text="${order.orderContact}"></td>
+                          <td th:text="${order.orderAddress}"></td>
+                          <td th:text="${pName}"></td>
+                          <td th:text="${order.orderPayment}"></td>
+                          <td th:text="'PHP ' + ${order.orderCost} + '0'"></td>
+                        </tr>
+                      </table>
+                    <h3>Upcoming Promos:</h3>
+                    <ol th:each="p: ${comingPromos}">
+                        <li th:text="${p.promoName} + ' - Promo Starts: ' + ${#temporals.format(p.promoStart, 'dd-MMM-yyyy hh:mm')} + ' - Promo Ends: ' + ${#temporals.format(p.promoEnd, 'dd-MMM-yyyy hh:mm')}" /></li>
+                    </ol>
+                    <p>We look forward to helping you and your car in the future.</p><br><br>
+                    <a class="center-text" th:href="@{/}">Return to Home</a>
+                </div>
+            </div>
+            <div th:replace="fragments/subfooter" :: subfooter ></div>
+            <div th:replace="fragments/footer" :: footer ></div>
+        </div>
+        <script type="text/javascript" th:src="@{/js/main.js}"></script>
+    </body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Car Care - Branches</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <link th:href="@{/css/styles.css}" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container">
+            <div th:replace="fragments/header" :: navbar ></div>
+            <div th:replace="fragments/subheader" :: booking ></div>
+            <div class="banner4 col-12"></div>
+            <h2 class="body-h2">OUR BRANCHES</h2>
+            <div class="content-box col-12">
+                <div class="content-branch-wrap">
+                    <div class="content-branch-box">
+                        <div th:each="branch : ${branches}">
+                            <h3 th:text="${branch.branchName}"></h3>
+                            <!-- <p th:text="${branch.branchAddress}"></p> -->
+                            <p th:text="'Tel: ' +  ${branch.branchContact}"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div th:replace="fragments/subfooter" :: subfooter ></div>
+            <div th:replace="fragments/footer" :: footer ></div>
+        </div>
+        <script type="text/javascript" th:src="@{/js/main.js}"></script>
+    </body>
+</html>

@@ -1,0 +1,18 @@
+<div th:fragment="promo-content" class="content-wrap">
+    <h3>Mechanics:</h3>
+    <p>1. All promos are available for all branches of CarCare unless indicated otherwise.</p>
+    <p>2. Promos can't work in conjunction with other existing promos/offers.</p>
+    <p>3. Promos can not be converted to cash.</p>
+    <p>4. Refund policy is still applicable for promo items/services.</p>
+    <h3>Current Promos:</h3>
+    <ol th:each="p: ${currentPromos}">
+        <li th:text="${p.promoName} + ' - Promo Starts: ' + ${#temporals.format(p.promoStart, 'dd-MMM-yyyy hh:mm')} + ' - Promo Ends: ' + ${#temporals.format(p.promoEnd, 'dd-MMM-yyyy hh:mm')}" />
+        <p th:text="${p.promoDetails}"></p>
+            <p class="promo-code" th:text="'PROMOCODE: ' + ${p.promoCode}"></p>
+        </li>
+    </ol>
+    <h3>Upcoming Promos:</h3>
+    <ol th:each="p: ${comingPromos}">
+        <li th:text="${p.promoName} + ' - Promo Starts: ' + ${#temporals.format(p.promoStart, 'dd-MMM-yyyy hh:mm')} + ' - Promo Ends: ' + ${#temporals.format(p.promoEnd, 'dd-MMM-yyyy hh:mm')}" /></li>
+    </ol>
+</div>

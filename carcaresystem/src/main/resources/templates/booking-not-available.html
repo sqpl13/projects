@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>CarCare - Try Again!</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <link th:href="@{/css/styles.css}" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container">
+            <div th:replace="fragments/header" :: navbar ></div>
+            <div th:replace="fragments/subheader" :: booking ></div>
+            <h2 class="body-h2">Something is not right...</h2>
+            <div class="content-box col-12">
+                <div class="content-wrap">
+                    <p class="center-text">No staff is currently available for your selected combination of branch, date and timeslot</p>
+                    <p  class="center-text">Please refer to the guide to make your booking seamless.</p>
+                    <h3>Booking Guide</h3>
+                    <p th:text="'Booking Slots for ' + ${#dates.format(booking.bookingDate,'dd-MMM-yyyy')}"></p>
+                    
+                    <table>
+                        <tr>
+                          <th>Schedule</th>
+                          <th># of Slots</th>
+                        </tr>
+                        <tr>
+                            <td th:text="'08:00 - 10:00 AM'"></td>
+                            <td th:text="${sched1}"></td>
+                        </tr>
+                        <tr>
+                            <td th:text="'10:00 - 12:00 PM'"></td>
+                            <td th:text="${sched2}"></td>
+                        </tr>
+                        <tr>
+                            <td th:text="'01:00 - 03:00 PM'"></td>
+                            <td th:text="${sched3}"></td>
+                        </tr>
+                        <tr>
+                            <td th:text="'03:00 - 05:00 PM'"></td>
+                            <td th:text="${sched4}"></td>
+                        </tr>       
+                    </table>
+                    <a class="center-text" th:href="@{/booking}">Try Again</a>
+                </div>
+            </div>
+            <div th:replace="fragments/subfooter" :: subfooter ></div>
+            <div th:replace="fragments/footer" :: footer ></div>
+        </div>
+        <script type="text/javascript" th:src="@{/js/main.js}"></script>
+    </body>
+</html>

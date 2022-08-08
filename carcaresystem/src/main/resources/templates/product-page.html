@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Car Care - Products</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <link th:href="@{/css/styles.css}" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container">
+            <div th:replace="fragments/header" :: navbar ></div>
+            <div th:replace="fragments/subheader" :: booking ></div>
+            <div class="col-12">
+                <h2 class="prod-h2" th:text="${product.productName}"></h2>
+                <div class="content-prod-wrap">
+                    <div class="content-prod-box">
+                        <div>
+                            <img th:src="@{'data:image/jpeg;base64,'+${product.productImage}}"/>
+                        </div>
+                        <div>
+                            <h2 class="prod-details-name" th:text="${product.productName}"></h2>
+                            <p th:text="'PHP ' + ${product.productPrice} + '0'"></p>
+                            <p th:text="${product.productDetails}"></p><br>
+                            <div class="btn-product-ind-container">
+                                <a href="#" class="btn-product-ind">BUY NOW</a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="spacer"></div>
+            <!-- OTHER PRODUCTS SECTION -->
+            <h2 class="body-h2">MORE PRODUCTS</h2>
+            <div class="col-12">
+                <div class="products-container-wrap" >
+                    <div class="products-container-box" >
+                        <div th:each="product, pStat : ${moreProducts}" th:if="${pStat.count} &lt; 5" class ="product-item">
+                            <a th:href="@{/products/} + ${product.productID}"><img th:src="@{'data:image/jpeg;base64,'+${product.productImage}}" /></a>
+                            <p class="product-name" th:text="${product.productName}"></p>
+                            <p th:text="'PHP ' + ${product.productPrice} + '0'"></p>
+                            <div class="btn-product-container">
+                                <a href="#" class="btn-product">BUY NOW</a>
+                            </div>
+                        </div>  
+                    </div>
+                </div>
+            </div>
+            <div th:replace="fragments/subfooter" :: subfooter ></div>
+            <div th:replace="fragments/footer" :: footer ></div>
+        </div>
+        <script type="text/javascript" th:src="@{/js/main.js}"></script>
+    </body>
+</html>

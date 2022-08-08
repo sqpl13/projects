@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Car Care - Booking</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <link th:href="@{/css/styles.css}" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container">
+            <div th:replace="fragments/header" :: navbar ></div>
+            <div th:replace="fragments/subheader" :: booking ></div>
+            <h2 class="body-h2">CARCARE BOOKING FORM</h2>
+            <div class="content-box-top col-12">
+                <div class="margin-2">
+                    <div th:replace="fragments/promo-content" :: promo-content ></div>
+                </div>
+                <div>
+                    <form action="#" th:action="@{/booking}" th:object="${booking}" method="POST">
+                        <fieldset>
+                            <label for="name">Name:</label><br>
+                            <input type="text" th:field="*{bookingName}" placeholder="Name" id="name"><br>
+                            <span th:if="${#fields.hasErrors('bookingName')}" th:errors="*{bookingName}" class="errors"></span><br>
+    
+                            <label for="contact">Contact:</label><br>
+                            <input type="text" th:field="${booking.bookingContact}" placeholder="Contact Number" id="contact"><br>
+                            <span th:if="${#fields.hasErrors('bookingContact')}" th:errors="*{bookingContact}" class="errors"></span><br> 
+    
+                            <label for="branch">Branch:</label><br>
+                            <select th:field="${booking.bookingBranch}" id="branch">
+                            <option th:each="b : ${branches}" th:value="${b.branchID}" th:text="${b.branchName}" ></option>
+                            </select><br>
+                            <br>
+    
+                            <label for="date">Date (dd-mm-yy):</label><br>
+                            <input type="date"  th:field="${booking.bookingDate}" th:value="${#dates.format(booking.bookingDate,'yyyy-MM-dd')}" id="date"><br>
+                            <span th:if="${#fields.hasErrors('bookingDate')}" th:errors="*{bookingDate}" class="errors"></span><br>
+    
+                            <label for="time">Timeslot:</label><br>
+                            <select th:field="${booking.bookingTimeSlot}" id="time">
+                            <option th:value="'08:00 - 10:00 AM'" th:text="'08:00 - 10:00 AM'"></option>
+                            <option th:value="'10:00 - 12:00 AM'" th:text="'10:00 - 12:00 AM'"></option>
+                            <option th:value="'01:00 - 03:00 PM'" th:text="'01:00 - 03:00 PM'"></option>
+                            <option th:value="'03:00 - 05:00 PM'" th:text="'03:00 - 05:00 PM'"></option>
+                            </select><br>
+                            <br>
+    
+                            <label for="make">Make:</label><br>
+                            <input type="text" th:field="${booking.bookingMake}" placeholder="Car Make" id="make"><br>
+                            <span th:if="${#fields.hasErrors('bookingMake')}" th:errors="*{bookingMake}" class="errors"></span><br>
+    
+                            <label for="model">Model:</label><br>
+                            <input type="text" th:field="${booking.bookingModel}" placeholder="Car Model" id="model"><br>
+                            <span th:if="${#fields.hasErrors('bookingModel')}" th:errors="*{bookingModel}" class="errors"></span><br>
+    
+                            <label for="payment">Payment:</label><br>
+                            <select th:field="${booking.bookingPayment}" id="payment">
+                            <option th:value="'Cash'" th:text="'Cash Payment'"></option>
+                            <option th:value="'Card'" th:text="'Card Payment'"></option>
+                            </select><br>
+                            <br>
+    
+                            <label for="service">Service:</label><br>
+                            <select th:field="${booking.serviceID}" for="service">
+                            <option th:each="s : ${services}" th:value="${s.serviceID}" th:text="${s.serviceName} + ' - PHP' + ${s.servicePrice} + '0'"></option>
+                            </select><br><br>
+    
+                            <label for="promo">Promo Code:</label><br>
+                            <input type="text" th:field="${booking.promoCode}" id="promo"><br>
+                            <br>
+
+                            <button type="submit">Book</button>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+            <div th:replace="fragments/subfooter" :: subfooter ></div>
+            <div th:replace="fragments/footer" :: footer ></div>
+        </div>
+        <script type="text/javascript" th:src="@{/js/main.js}"></script>
+    </body>
+</html>
