@@ -21,6 +21,7 @@ import java.util.Map;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
@@ -34,9 +35,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-import com.sqpl.app.model.Quote;
+import com.sqpl.app.upload.StorageProperties;
+import com.sqpl.app.upload.StorageService;
 
 @SpringBootApplication
+@EnableConfigurationProperties(StorageProperties.class)
 @RestController
 public class Application extends WebSecurityConfigurerAdapter {
 
@@ -62,6 +65,8 @@ public class Application extends WebSecurityConfigurerAdapter {
 				.logoutSuccessUrl("/").permitAll()
 			)
 			.oauth2Login();
+		
+		http.csrf().disable();
 	}
 
 	public static void main(String[] args) {
@@ -71,6 +76,14 @@ public class Application extends WebSecurityConfigurerAdapter {
 	@Bean
 	public RestTemplate restTemplate(RestTemplateBuilder builder) {
 	    return builder.build();
+	}
+	
+	@Bean
+	CommandLineRunner init(StorageService storageService) {
+		return (args) -> {
+			//storageService.deleteAll();
+			storageService.init();
+		};
 	}
 
 }
